@@ -1,0 +1,8 @@
+.expend-detail {
+    width: 100%;
+}
+
+.single-order {
+    display: flex;
+    flex-direction: column
+}

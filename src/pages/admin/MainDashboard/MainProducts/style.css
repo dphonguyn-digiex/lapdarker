@@ -1,0 +1,116 @@
+.productMainAdmin {
+    display: flex;
+    flex-direction: column;
+}
+
+.productTitle {
+    font-size: 30px;
+    font-weight: 600;
+}
+.select{
+    font-size: 18px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 200px;
+    height: 50px;
+    line-height: 3;
+    color: rgb(190, 190, 190);
+    background-color: transparent;
+    border-radius: .25em;
+    border: none;
+ }
+
+ .selected{
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 200px;
+    height: 50px;
+    line-height: 3;
+    color: rgb(16, 14, 24);
+    border-radius: .25em;
+ }
+
+ .headerProduct{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+ }
+ .bottomMOdalProduct{
+    position: relative;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+ }
+
+ .imgDetailProduct{
+    width: 100%;
+ 
+ }
+
+ .infoProduct{
+    /* display: flex;
+    gap: 150px;
+    justify-content: space-between;
+    padding-right: 150px;
+    padding-left: 100px; */
+    font-size: 10px;
+    display: flex;
+
+ }
+ .labelProduct{
+    font-size: 17px;
+    font-weight: 700;
+    width: 30%;
+    margin-bottom: 20px;
+ }
+
+ .fillDetailProduct{
+    font-size: 15px;
+    /* background-color: rgb(249 250 251 ); */
+    color: rgb(17 24 39);
+    opacity: 1;
+    border: none;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    margin-bottom: 20px;
+    border-color: rgb(63 131 248);
+    width: 100%;
+ }
+
+ .detailModal {
+    /* display: flex;
+    flex-direction: column;
+    gap: 10px; */
+    padding: 1rem 6rem;
+    
+ }
+
+ .imgHolder{
+    /* height: 50%;
+    width: 200px; */
+   width: 160px;
+   height: 120px;
+   margin-left: 30px;
+ }
+ .imgHolder:hover {
+   border: 1px solid green;
+   /* transform: scale(200%); */
+ }
+ .girdModal{
+   display: flex;
+ }
+ .flex-modal{
+   width: 70%;
+ }
+ .col-img{
+   width: 30%;
+   height: 100%;
+ }

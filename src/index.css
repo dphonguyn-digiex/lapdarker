@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Nunito Sans', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.carousel .thumb {
+  border: 1px solid rgba(236, 240, 244, 1) !important;
+  border-radius: 8px;
+}
+
+.carousel .thumbs{
+  padding-left: 0;
+  margin: 0;
+}
+
+.carousel .thumbs-wrapper {
+  margin-top:0 !important;
+}
+
+.carousel .thumb:hover {
+  cursor: pointer;
+}
+
+.carousel .thumb.selected{
+  border: 1px solid rgba(0, 101, 238, 1) !important; 
+}
+
+.carousel .slider-wrapper.axis-horizontal .slider .slide{
+  height: 100%;
+}
+
+/* .carousel.carousel-slider:hover {
+  cursor: url(https://findicons.com/files/icons/1156/fugue/16/arrow_resize_045.png), auto;
+} */
+
+.balls {
+  width: 4em;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.balls div {
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+  background-color: #fc2f70;
+}
+
+.balls div:nth-of-type(1) {
+  transform: translateX(-100%);
+  animation: left-swing 0.5s ease-in alternate infinite;
+}
+
+.balls div:nth-of-type(3) {
+  transform: translateX(-95%);
+  animation: right-swing 0.5s ease-out alternate infinite;
+}
+
+@keyframes left-swing {
+  50%,
+  100% {
+    transform: translateX(95%);
+  }
+}
+
+@keyframes right-swing {
+  50% {
+    transform: translateX(-95%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

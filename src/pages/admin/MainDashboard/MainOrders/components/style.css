@@ -1,0 +1,28 @@
+ .select{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 12em;
+    height: 2em;
+    line-height: 3;
+    color: orange;
+    border-radius: .25em;
+ }
+
+ .select option:hover{
+    background: orange;
+    color: white;
+ }
+
+ .modalDeleteOrder{
+   margin-top: 30px;
+    display: 'flex';
+    flex-direction: column;
+ }
+
+ .btnDeleteArea{
+   display: flex;
+   margin-top: 10px;
+   padding: 0px 15px 15px 15px
+ }
+

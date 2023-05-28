@@ -1,0 +1,12 @@
+###
+
+Link website: https://tlcn-ecommerce-website.vercel.app/
+Account Admin
+acc: 0947443064
+pass: 123456
+!!! Note:
+
+- I just build APIs and DB for three types of devices: Laptop, Monitor, Keyboard
+- You need to login to perform order management functions
+- Missing <Skeleton/> at some page
+- The website is still in the process of being updated
