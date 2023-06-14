@@ -18,7 +18,7 @@ import { ThemeContext } from '~/context/ThemeContext';
 import { focusComponentState } from '~/store/selectors';
 import { DropDown } from '~/components/elements/DropDown';
 import { useDebounce } from '~/hook';
-import { fetchLaptops } from '~/apis';
+import { fetchLaptops } from '~/apis/client';
 // import { useOutsideClick } from '~/hook/useOutsideClick';
 
 export default function Header() {

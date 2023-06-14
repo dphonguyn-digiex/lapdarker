@@ -41,7 +41,7 @@ import PaymentPolicy from './pages/shop/User/UserContainer/RightAsideContainer/P
 // import { ThemeContext } from './context/ThemeContext';
 // import ErrorBoundary from './pages/ErrorBoundary';
 import { stateRequestAuth } from './store/selectors';
-import SearchInsurance from './pages/shop/User/UserContainer/RightAsideContainer/SearchInsurance/index';
+import SearchInsurance from './pages/shop/User/UserContainer/RightAsideContainer/SearchInsurance';
 
 const theme = createTheme({
   breakpoints: {
@@ -50,17 +50,17 @@ const theme = createTheme({
       sm: 600,
       md: 900,
       lg: 1200,
-      xl: 1536
-    }
+      xl: 1536,
+    },
   },
   typography: {
-    fontFamily: 'Nunito Sans, sans-serif'
-  }
+    fontFamily: 'Nunito Sans, sans-serif',
+  },
 });
 
 function App() {
   const [path, setPath] = useState('/');
-  
+
   // go to the top of page whenever redirect
   const location = useLocation();
   localStorage.setItem('_pathname', path);
@@ -76,7 +76,7 @@ function App() {
       style={{
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
     >
       <div style={{ display: 'flex' }}>
@@ -99,7 +99,7 @@ function App() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          style: { width: 'auto', backgroundColor: 'rgba(2,1,36,.85)' }
+          style: { width: 'auto', backgroundColor: 'rgba(2,1,36,.85)' },
         });
       }
     }

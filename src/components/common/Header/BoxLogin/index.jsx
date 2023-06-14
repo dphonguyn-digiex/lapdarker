@@ -23,7 +23,7 @@ import { stateRequestAuth } from "~/store/selectors";
 
 import { styles } from "./styles";
 import { isVietnamesePhoneNumber } from "~/utils";
-import { postInfoLogin } from "~/apis";
+import { postInfoLogin } from "~/apis/client";
 
 function BoxLogin({ isShow, handleClose }) {
   const [textPhone, setTextPhone] = useState("");

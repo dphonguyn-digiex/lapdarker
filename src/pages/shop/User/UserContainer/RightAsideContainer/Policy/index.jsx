@@ -1,5 +1,4 @@
 import { useCallback, useState, useLayoutEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Box, Paper, Tab, Tabs, Typography } from '@mui/material';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 
@@ -8,7 +7,6 @@ import { styles } from './styles';
 function Policy() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const location = useLocation();
 

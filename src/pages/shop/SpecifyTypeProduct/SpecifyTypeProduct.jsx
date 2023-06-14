@@ -6,7 +6,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { getEndPointURL } from '~/utils';
 import IntroTypeProduct from '~/components/Intro/IntroTypeProduct';
 import MainPage from '~/pages/shop/Home/MainPage';
-import { fetchDevices } from '~/apis';
+import { fetchDevices } from '~/apis/client';
 import SpinnerLoader from '~/components/common/SpinnerLoader/Spinner';
 import UnreadyProductPage from './UnreadyProduct';
 

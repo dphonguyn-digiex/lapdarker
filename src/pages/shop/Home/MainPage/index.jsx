@@ -3,8 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Container, Grid, Typography } from '@mui/material';
 import MenuSearchProducts from './MenuSearchProducts';
 import ProductsList from './ProductsList';
-import { useSelector } from 'react-redux';
-import { devicesFiltersState } from '~/store/selectors';
+
 function MainPage(props) {
   const { data, isLoading } = props;
   const location = useLocation();

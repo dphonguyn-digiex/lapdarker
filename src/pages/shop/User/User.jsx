@@ -2,7 +2,7 @@ import { Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link, Outlet, useOutletContext } from "react-router-dom";
-import { fetchAllOrders } from "~/apis";
+import { fetchAllOrders } from "~/apis/client";
 import SpinnerLoader from "~/components/common/SpinnerLoader/Spinner";
 import { handleOrdersData } from "~/utils";
 

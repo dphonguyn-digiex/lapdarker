@@ -13,35 +13,33 @@ export const classifyDataToTable = data => {
     return { id: index, ...rest };
   });
   const keys = Object.keys(data[0])?.filter(
-    item => item !== 'updatedAt' && item !== 'idUser' && item !== '__v' && item !== 'products'
+    item => item !== 'updatedAt' && item !== 'idUser' && item !== '__v' && item !== 'products',
   );
   keys?.map(key => columns.push({ name: key, selector: row => row[`${key}`], sortable: true }));
   return {
     columns,
-    rows
+    rows,
   };
 };
 
-export const ignoreSubHeader = (path) => {
+export const ignoreSubHeader = path => {
   if (path.includes('/checkout')) return true;
   if (path.includes('/user')) return true;
   if (path.includes('/product')) {
     if (path.split('/').length > 3) return true;
   }
   return false;
-}
+};
 
-export const isVietnamesePhoneNumber = (number) => /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/.test(number);
+export const isVietnamesePhoneNumber = number => /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/.test(number);
 
-export const handleOrdersData = (state) => {
-  console.log('state', state);
+export const handleOrdersData = state => {
   let ordersTypes = {
     type0: state.filter(order => order.state === 'WAIT_FOR_PAY'),
     type1: state.filter(order => order.state.includes('WAIT_FOR_CONFIRM')),
     type2: state.filter(order => order.state === 'PROCESSING'),
     type3: state.filter(order => order.state === 'TRANSPORTING'),
-    type4: state.filter(order => order.state === 'DELIVERED')
+    type4: state.filter(order => order.state === 'DELIVERED'),
   };
   return ordersTypes;
-  
-}
+};

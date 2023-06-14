@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Container, Grid, Typography } from '@mui/material';
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 // import MainDetailedProduct from '~/components/MainDetailedProduct';
 import SkeletonTable from '~/components/elements/Skeleton/SkeletonTable';
@@ -10,27 +10,26 @@ import { getAbsolutePath } from '~/utils';
 
 import InfoDetailedProduct from './MainDetailedProduct/InfoDetailedProduct';
 import InfoPayment from './MainDetailedProduct/InfoPayment';
-import { fetchDetailedDevice } from '~/apis';
+import { fetchDetailedDevice } from '~/apis/client';
 
 function DetailedProduct() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
   const location = useLocation();
-  
-  
+
   useEffect(() => {
     getData()
       .then(() => setLoading(false))
-      .catch(err=>setLoading(false));
+      .catch(err => setLoading(false));
   }, []);
-  
+
   const getData = async () => {
     setLoading(true);
     const rs = await fetchDetailedDevice(getAbsolutePath(location.pathname));
     if (rs) {
-      setData(rs||rs?.data);
+      setData(rs || rs?.data);
     }
-  }
+  };
 
   return (
     <div style={styles.container_page}>
@@ -66,19 +65,19 @@ export default DetailedProduct;
 const styles = {
   container_page: {
     backgroundColor: 'rgba(248, 250, 252, 1)',
-    padding: '80px 0 24px 0'
+    padding: '80px 0 24px 0',
   },
   text_redirect: {
     color: '#0065ee',
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
   },
   arrow_icon: {
     fontSize: '12px',
     paddingRight: '8px',
-    color: 'rgba(140, 145, 161, 1)'
+    color: 'rgba(140, 145, 161, 1)',
   },
   link: {
     textDecoration: 'none',
-    paddingRight: '8px'
-  }
+    paddingRight: '8px',
+  },
 };

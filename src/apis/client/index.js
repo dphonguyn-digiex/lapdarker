@@ -1,26 +1,23 @@
-import Req from "~/utils/request";
+import Req from '~/utils/request';
 
 export const fetchLaptops = async (search, field, ascSort) => {
   const queryObj = new URLSearchParams({
     search,
     field,
-    ascSort
+    ascSort,
   });
-
-  console.log(queryObj);
 
   const response = await Req.GET('/products', { params: queryObj });
   if (response) {
-    console.log('responsene', response);
     return response;
   } else return false;
 };
 
-export const fetchDevices = async (type, search = "", field ="", ascSort ="") => {
+export const fetchDevices = async (type, search = '', field = '', ascSort = '') => {
   const queryObj = new URLSearchParams({
     search,
     field,
-    ascSort
+    ascSort,
   });
   const response = await Req.GET(`/product/${type}`, { params: queryObj });
   if (response) {
@@ -29,10 +26,10 @@ export const fetchDevices = async (type, search = "", field ="", ascSort ="") =>
 };
 
 export const fetchDeviceDetail = async (type, id) => {
-    const response = await Req.GET(`/product/${type}/${id}`);
-    if (response) {
-      return response;
-    } else return false;
+  const response = await Req.GET(`/product/${type}/${id}`);
+  if (response) {
+    return response;
+  } else return false;
 };
 
 export const fetchDetailedDevice = async path => {

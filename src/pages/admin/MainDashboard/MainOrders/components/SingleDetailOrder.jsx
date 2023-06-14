@@ -1,13 +1,12 @@
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { BiHome } from 'react-icons/bi';
 import { MdOutlineInfo } from 'react-icons/md';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { AiOutlineFieldNumber } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import { GrClose } from 'react-icons/gr';
-import { BiCheck } from 'react-icons/bi';
+import { BiCheck, BiHome } from 'react-icons/bi';
 import { SelectStateOrder } from './SelectStatusOrder';
 import { updateOrderStatus } from '~/apis/admin';
 
@@ -15,29 +14,29 @@ import { styles } from './styles';
 
 function SingleDetailOrder(props) {
   const { data = [] } = props;
-  console.log('data', data)
+  console.log('data', data);
 
-  const [ state, setState ] = useState({
-    status: data?.state
-  })
+  const [state, setState] = useState({
+    status: data?.state,
+  });
 
-
-  const ToastContent = (props) => {
-    const {content} = props;
-  return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}
-    >
-      <div style={{ display: 'flex' }}>
-        <BiCheck style={{ fontSize: '24px' }} />
-        <Typography> {content}</Typography>
+  const ToastContent = props => {
+    const { content } = props;
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <div style={{ display: 'flex' }}>
+          <BiCheck style={{ fontSize: '24px' }} />
+          <Typography> {content}</Typography>
+        </div>
       </div>
-    </div>
-  )}
+    );
+  };
 
   const prd = data.products[0];
   const [openModal, setOpenModal] = useState(false);
@@ -47,9 +46,8 @@ function SingleDetailOrder(props) {
 
   const [openModalDelete, setOpenModalDelete] = useState(false);
 
-  const handleOpenModalDelete= () => setOpenModalDelete(true);
+  const handleOpenModalDelete = () => setOpenModalDelete(true);
   const handleCloseModalDelete = () => setOpenModalDelete(false);
-  
 
   const handleStatePayment = () => {
     let type = data?.payment;
@@ -68,14 +66,14 @@ function SingleDetailOrder(props) {
   const handleupdateOrderStatus = async () => {
     try {
       const body = {
-        id : data?._id,
-        state: state?.status
+        id: data?._id,
+        state: state?.status,
       };
-      const response = await updateOrderStatus(body,localStorage.getItem('token'));
+      const response = await updateOrderStatus(body, localStorage.getItem('token'));
       console.log('response', response);
-      if(response?.data?.statusCode === 200) {
+      if (response?.data?.statusCode === 200) {
         toast.dismiss();
-        toast(<ToastContent content= 'Cập nhật thành công' />, {
+        toast(<ToastContent content="Cập nhật thành công" />, {
           toastId: data._id,
           position: 'bottom-left',
           autoClose: 3000,
@@ -84,34 +82,33 @@ function SingleDetailOrder(props) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          style: { width: 'auto', backgroundColor: 'rgba(2,1,36,.85)' }
+          style: { width: 'auto', backgroundColor: 'rgba(2,1,36,.85)' },
         });
         refetch();
         handleCloseModal();
-      }
-      else {
-        alert('Update fail')
+      } else {
+        alert('Update fail');
         handleCloseModal();
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
       handleCloseModal();
     }
   };
 
-  console.log('id>>>>>>>>>>>>>>', data?._id)
+  console.log('id>>>>>>>>>>>>>>', data?._id);
 
   const handleDeleteOrder = async () => {
     try {
       const body = {
-        id : data?._id,
+        id: data?._id,
       };
-      const response = await deleteOrder(body,localStorage.getItem('token'));
+      const response = await deleteOrder(body, localStorage.getItem('token'));
       console.log('response', response);
-      if(response?.data?.statusCode === 200) {
+      if (response?.data?.statusCode === 200) {
         handleCloseModalDelete();
         toast.dismiss();
-        toast(<ToastContent content='Xóa thành công' />, {
+        toast(<ToastContent content="Xóa thành công" />, {
           toastId: data._id,
           position: 'bottom-left',
           autoClose: 3000,
@@ -120,15 +117,14 @@ function SingleDetailOrder(props) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          style: { width: 'auto', backgroundColor: 'rgba(2,1,36,.85)' }
+          style: { width: 'auto', backgroundColor: 'rgba(2,1,36,.85)' },
         });
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   };
 
-  
   return (
     <div>
       <div style={styles.part3}>
@@ -181,8 +177,8 @@ function SingleDetailOrder(props) {
               <div
                 style={{
                   borderRadius: '4px',
-                  display : 'flex',
-                  gap: '10px'
+                  display: 'flex',
+                  gap: '10px',
                 }}
               >
                 <div
@@ -201,22 +197,22 @@ function SingleDetailOrder(props) {
                   </Typography>
                 </div>
 
-                  {state?.status === 'DELIVERED' && (
-                    <div
+                {state?.status === 'DELIVERED' && (
+                  <div
                     style={{
                       backgroundColor: 'rgba(236, 240, 241,1)',
                       padding: '4px',
                       display: 'flex',
                       alignItems: 'center',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
                     }}
                     onClick={handleOpenModalDelete}
-                    >
+                  >
                     <Typography component="span" sx={{ fontSize: '13px' }}>
-                        Xóa
+                      Xóa
                     </Typography>
-                    </div>
-                  )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -270,11 +266,10 @@ function SingleDetailOrder(props) {
                         <div
                           style={{
                             backgroundColor: 'rgba(248, 250, 252, 1)',
-                            borderRadius: '8px'
+                            borderRadius: '8px',
                           }}
                         >
                           {/* <Typography sx={styles.text14}>{statusOrder?.[data?.state]}</Typography> */}
-                          
                         </div>
                       </div>
                     </Grid>
@@ -295,9 +290,9 @@ function SingleDetailOrder(props) {
                     </div>
                   </div>
                   <SelectStateOrder
-                      type={data?.state}
-                      selectedStatus={(value)=>setState({...state,status: value})}
-                    />
+                    type={data?.state}
+                    selectedStatus={value => setState({ ...state, status: value })}
+                  />
                 </div>
                 <div style={styles.container}>
                   <Typography sx={styles.text1}>Chi tiết đơn hàng</Typography>
@@ -341,14 +336,14 @@ function SingleDetailOrder(props) {
                               <div
                                 style={{
                                   borderRadius: '4px',
-                                  backgroundColor: 'rgba(236, 240, 241,1)'
+                                  backgroundColor: 'rgba(236, 240, 241,1)',
                                 }}
                               >
                                 <div
                                   style={{
                                     padding: '4px',
                                     display: 'flex',
-                                    alignItems: 'center'
+                                    alignItems: 'center',
                                   }}
                                 >
                                   <Typography component="span" sx={{ fontSize: '13px' }}>
@@ -359,7 +354,7 @@ function SingleDetailOrder(props) {
                                     sx={{
                                       fontSize: '13px',
                                       fontWeight: 'bold',
-                                      pl: '4px'
+                                      pl: '4px',
                                     }}
                                   >
                                     {product.quantity}
@@ -376,7 +371,6 @@ function SingleDetailOrder(props) {
                     <Typography sx={styles.text1}>
                       Thanh toán qua :<Typography sx={styles.text1}>{handleStatePayment()}</Typography>
                     </Typography>
-                    
 
                     {/* <RadioGroup value={valueRadio}>
                       <Box sx={styles.box_payment}>
@@ -471,20 +465,29 @@ function SingleDetailOrder(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-          <div style={{ backgroundColor: '#fff' , height:'180px', width:'500px', position:'absolute', top:"40%", left:'40%', borderRadius:'30px'}}>
-            <div className = 'modalDeleteOrder'>
-             
+        <div
+          style={{
+            backgroundColor: '#fff',
+            height: '180px',
+            width: '500px',
+            position: 'absolute',
+            top: '40%',
+            left: '40%',
+            borderRadius: '30px',
+          }}
+        >
+          <div className="modalDeleteOrder">
             <Typography sx={styles.text10}>Bạn có chắc chắn muốn xóa đơn này </Typography>
-              <div className="btnDeleteArea">
-                <Button sx={Object.assign({ ...styles.btn1 }, { flex: 1 })} onClick={handleDeleteOrder}>
-                    <Typography sx={styles.text8}>Có</Typography>
-                  </Button>
-                  <Button onClick={handleCloseModalDelete} sx={Object.assign({ ...styles.btn2 }, { flex: 1 })}>
-                    <Typography sx={styles.text9}>Hủy</Typography>
-                  </Button>
-              </div>
+            <div className="btnDeleteArea">
+              <Button sx={Object.assign({ ...styles.btn1 }, { flex: 1 })} onClick={handleDeleteOrder}>
+                <Typography sx={styles.text8}>Có</Typography>
+              </Button>
+              <Button onClick={handleCloseModalDelete} sx={Object.assign({ ...styles.btn2 }, { flex: 1 })}>
+                <Typography sx={styles.text9}>Hủy</Typography>
+              </Button>
             </div>
           </div>
+        </div>
       </Modal>
     </div>
   );

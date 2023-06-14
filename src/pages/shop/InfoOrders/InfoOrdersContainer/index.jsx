@@ -13,7 +13,7 @@ import {
   Typography,
   Alert,
   Select,
-  MenuItem
+  MenuItem,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -21,14 +21,13 @@ import { FiPhone } from 'react-icons/fi';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { MdKeyboardArrowRight, MdOutlineLocationOn } from 'react-icons/md';
 import { AiOutlineLike } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { style } from '@mui/system';
 import { useCart } from 'react-use-cart';
 import { HiOutlineClipboardList } from 'react-icons/hi';
 import axios from 'axios';
 
-import { userState } from '~/store/selectors';
-import img_order from '~/assets/img/selections/user02.png'
+import img_order from '~/assets/img/selections/user02.png';
 import { ordersActions } from '~/store/actions';
 
 import { styles } from './styles';
@@ -46,9 +45,9 @@ function InfoOrdersContainer() {
         city: '',
         district: '',
         ward: '',
-        specifyAdr: ''
-      }
-    }
+        specifyAdr: '',
+      },
+    },
   });
 
   const handleChangeValueOfField = (event, type) => {
@@ -57,7 +56,7 @@ function InfoOrdersContainer() {
         setValueForm(oldState => {
           return {
             ...oldState,
-            fullname: event.target.value
+            fullname: event.target.value,
           };
         });
         break;
@@ -66,7 +65,7 @@ function InfoOrdersContainer() {
         setValueForm(oldState => {
           return {
             ...oldState,
-            phone: event.target.value
+            phone: event.target.value,
           };
         });
         break;
@@ -77,8 +76,8 @@ function InfoOrdersContainer() {
             ...oldState,
             address: {
               store: event.target.value,
-              personal: oldState.address.personal
-            }
+              personal: oldState.address.personal,
+            },
           };
         });
         break;
@@ -90,10 +89,10 @@ function InfoOrdersContainer() {
             address: {
               personal: {
                 ...oldState.address.personal,
-                city: event.target.value
+                city: event.target.value,
               },
-              store: oldState.address.store
-            }
+              store: oldState.address.store,
+            },
           };
         });
         break;
@@ -105,10 +104,10 @@ function InfoOrdersContainer() {
             address: {
               personal: {
                 ...oldState.address.personal,
-                district: event.target.value
+                district: event.target.value,
               },
-              store: oldState.address.store
-            }
+              store: oldState.address.store,
+            },
           };
         });
         break;
@@ -121,9 +120,9 @@ function InfoOrdersContainer() {
               store: oldState.address.store,
               personal: {
                 ...oldState.address.personal,
-                ward: event.target.value
-              }
-            }
+                ward: event.target.value,
+              },
+            },
           };
         });
         break;
@@ -136,9 +135,9 @@ function InfoOrdersContainer() {
               store: oldState.address.store,
               personal: {
                 ...oldState.address.personal,
-                specifyAdr: event.target.value
-              }
-            }
+                specifyAdr: event.target.value,
+              },
+            },
           };
         });
         break;
@@ -166,9 +165,9 @@ function InfoOrdersContainer() {
               city: '',
               district: '',
               ward: '',
-              specifyAdr: ''
-            }
-          }
+              specifyAdr: '',
+            },
+          },
         };
       });
     }
@@ -178,8 +177,8 @@ function InfoOrdersContainer() {
           ...oldState,
           address: {
             store: '',
-            personal: oldState.address.personal
-          }
+            personal: oldState.address.personal,
+          },
         };
       });
     }
@@ -195,7 +194,7 @@ function InfoOrdersContainer() {
     if (result) {
       setCities(result.data);
     }
-  }
+  };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -245,8 +244,8 @@ function InfoOrdersContainer() {
         totalItems,
         payment: null,
         state: 'WAIT_FOR_PAY',
-        token: token ? token : ''
-      })
+        token: token ? token : '',
+      }),
     );
     localStorage.setItem('total_price', cartTotal);
     emptyCart();
@@ -256,153 +255,159 @@ function InfoOrdersContainer() {
   const TabPanel1 = () => {
     return (
       <div tabIndex={1} style={{ display: 'flex', padding: '20px 0' }}>
-        {!loading && <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
-          <div style={styles.part5}>
-            <Typography sx={styles.text4}>Tỉnh / Thành phố</Typography>
-            <Select
-              required
-              onChange={e => {
-                handleChangeValueOfField(e, 'ADDRESS_PERSONAL_CITY');
-              }}
-              value={valueForm.address.personal.city}
-              sx={styles.input}
-              MenuProps={{
-                style: {
-                  maxHeight: 400
-                },
-                anchorOrigin: {
-                  vertical: 'bottom',
-                  horizontal: 'center'
-                },
-                transformOrigin: {
-                  vertical: 'top',
-                  horizontal: 'center'
-                }
-              }}
-              displayEmpty
-            >
-              <MenuItem value="" sx={{ display: 'none' }}>
-                Chọn Tỉnh / Thành phố
-              </MenuItem>
-              {cities.map(city => {
-                return (
-                  <MenuItem onClick={() => handleSetDistricts(city.districts)} key={city.name} value={city.name}>
-                    {city.name}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </div>
-          <div style={styles.part5}>
-            <Typography sx={styles.text4}>Quận / Huyện</Typography>
-            <Select
-              onChange={e => handleChangeValueOfField(e, 'ADDRESS_PERSONAL_DISTRICT')}
-              value={valueForm.address.personal.district}
-              required
-              sx={styles.input}
-              MenuProps={{
-                style: {
-                  maxHeight: 400
-                },
-                anchorOrigin: {
-                  vertical: 'bottom',
-                  horizontal: 'center'
-                },
-                transformOrigin: {
-                  vertical: 'top',
-                  horizontal: 'center'
-                }
-              }}
-              displayEmpty
-            >
-              <MenuItem value="" sx={{ display: 'none' }}>
-                Chọn Quận / Huyện
-              </MenuItem>
-              {districts.length === 0 ? (
-                <MenuItem disabled>Vui lòng chọn Tỉnh / Thành phố</MenuItem>
-              ) : (
-                districts.map(district => {
-                  return (
-                    <MenuItem onClick={() => handleSetWards(district.wards)} key={district.name} value={district.name}>
-                      {district.name}
-                    </MenuItem>
-                  );
-                })
-              )}
-            </Select>
-          </div>
-          <div style={styles.part5}>
-            <Typography sx={styles.text4}>Phường / Xã</Typography>
-            <Select
-              required
-              onChange={e => handleChangeValueOfField(e, 'ADDRESS_PERSONAL_WARD')}
-              value={valueForm.address.personal.ward}
-              sx={styles.input}
-              MenuProps={{
-                style: {
-                  maxHeight: 400
-                },
-                anchorOrigin: {
-                  vertical: 'bottom',
-                  horizontal: 'center'
-                },
-                transformOrigin: {
-                  vertical: 'top',
-                  horizontal: 'center'
-                }
-              }}
-              displayEmpty
-            >
-              <MenuItem
-                value=""
-                sx={{
-                  display: 'none'
+        {!loading && (
+          <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
+            <div style={styles.part5}>
+              <Typography sx={styles.text4}>Tỉnh / Thành phố</Typography>
+              <Select
+                required
+                onChange={e => {
+                  handleChangeValueOfField(e, 'ADDRESS_PERSONAL_CITY');
                 }}
+                value={valueForm.address.personal.city}
+                sx={styles.input}
+                MenuProps={{
+                  style: {
+                    maxHeight: 400,
+                  },
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  },
+                  transformOrigin: {
+                    vertical: 'top',
+                    horizontal: 'center',
+                  },
+                }}
+                displayEmpty
               >
-                Chọn Phường / Xã
-              </MenuItem>
-              {wards.length === 0 ? (
-                <MenuItem disabled>Vui lòng chọn Quận / Huyện</MenuItem>
-              ) : (
-                wards.map(ward => {
+                <MenuItem value="" sx={{ display: 'none' }}>
+                  Chọn Tỉnh / Thành phố
+                </MenuItem>
+                {cities.map(city => {
                   return (
-                    <MenuItem key={ward.name} value={ward.name}>
-                      {ward.name}
+                    <MenuItem onClick={() => handleSetDistricts(city.districts)} key={city.name} value={city.name}>
+                      {city.name}
                     </MenuItem>
                   );
-                })
-              )}
-            </Select>
-          </div>
-          <div style={styles.part5}>
-            <Typography sx={styles.text4}>Địa chỉ cụ thể</Typography>
-            <OutlinedInput
-              autoFocus
-              key="input-text-address"
-              onChange={e => handleChangeValueOfField(e, 'ADDRESS_PERSONAL_SPECIFY')}
-              value={valueForm.address.personal.specifyAdr}
-              sx={styles.input}
-              placeholder="Số nhà, tòa nhà, đường, khu vực"
-              required
-            ></OutlinedInput>
-            <Typography component="span" sx={styles.text9}>
-              Ví dụ: Số 514 Đ. Nguyễn Công Phương, Quảng Ngãi{' '}
-            </Typography>
-          </div>
-          <div style={{ borderBottom: '1px solid rgba(236, 240, 244,1)', margin: '12px 0' }}></div>
-          <div style={styles.part4}>
-            <Typography sx={styles.text5}>
-              Phí vận chuyển tạm tính: <strong>0</strong>
-            </Typography>
-            <Typography sx={styles.text5}>
-              Thời gian giao hàng dự kiến: <strong>Không có</strong>
-            </Typography>
-            <div style={styles.part1}>
-              <AiOutlineLike style={styles.icon4} />
-              <Typography sx={styles.text10}>Miễn phí vận chuyển khi thanh toán trước</Typography>
+                })}
+              </Select>
+            </div>
+            <div style={styles.part5}>
+              <Typography sx={styles.text4}>Quận / Huyện</Typography>
+              <Select
+                onChange={e => handleChangeValueOfField(e, 'ADDRESS_PERSONAL_DISTRICT')}
+                value={valueForm.address.personal.district}
+                required
+                sx={styles.input}
+                MenuProps={{
+                  style: {
+                    maxHeight: 400,
+                  },
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  },
+                  transformOrigin: {
+                    vertical: 'top',
+                    horizontal: 'center',
+                  },
+                }}
+                displayEmpty
+              >
+                <MenuItem value="" sx={{ display: 'none' }}>
+                  Chọn Quận / Huyện
+                </MenuItem>
+                {districts.length === 0 ? (
+                  <MenuItem disabled>Vui lòng chọn Tỉnh / Thành phố</MenuItem>
+                ) : (
+                  districts.map(district => {
+                    return (
+                      <MenuItem
+                        onClick={() => handleSetWards(district.wards)}
+                        key={district.name}
+                        value={district.name}
+                      >
+                        {district.name}
+                      </MenuItem>
+                    );
+                  })
+                )}
+              </Select>
+            </div>
+            <div style={styles.part5}>
+              <Typography sx={styles.text4}>Phường / Xã</Typography>
+              <Select
+                required
+                onChange={e => handleChangeValueOfField(e, 'ADDRESS_PERSONAL_WARD')}
+                value={valueForm.address.personal.ward}
+                sx={styles.input}
+                MenuProps={{
+                  style: {
+                    maxHeight: 400,
+                  },
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  },
+                  transformOrigin: {
+                    vertical: 'top',
+                    horizontal: 'center',
+                  },
+                }}
+                displayEmpty
+              >
+                <MenuItem
+                  value=""
+                  sx={{
+                    display: 'none',
+                  }}
+                >
+                  Chọn Phường / Xã
+                </MenuItem>
+                {wards.length === 0 ? (
+                  <MenuItem disabled>Vui lòng chọn Quận / Huyện</MenuItem>
+                ) : (
+                  wards.map(ward => {
+                    return (
+                      <MenuItem key={ward.name} value={ward.name}>
+                        {ward.name}
+                      </MenuItem>
+                    );
+                  })
+                )}
+              </Select>
+            </div>
+            <div style={styles.part5}>
+              <Typography sx={styles.text4}>Địa chỉ cụ thể</Typography>
+              <OutlinedInput
+                autoFocus
+                key="input-text-address"
+                onChange={e => handleChangeValueOfField(e, 'ADDRESS_PERSONAL_SPECIFY')}
+                value={valueForm.address.personal.specifyAdr}
+                sx={styles.input}
+                placeholder="Số nhà, tòa nhà, đường, khu vực"
+                required
+              ></OutlinedInput>
+              <Typography component="span" sx={styles.text9}>
+                Ví dụ: Số 514 Đ. Nguyễn Công Phương, Quảng Ngãi{' '}
+              </Typography>
+            </div>
+            <div style={{ borderBottom: '1px solid rgba(236, 240, 244,1)', margin: '12px 0' }}></div>
+            <div style={styles.part4}>
+              <Typography sx={styles.text5}>
+                Phí vận chuyển tạm tính: <strong>0</strong>
+              </Typography>
+              <Typography sx={styles.text5}>
+                Thời gian giao hàng dự kiến: <strong>Không có</strong>
+              </Typography>
+              <div style={styles.part1}>
+                <AiOutlineLike style={styles.icon4} />
+                <Typography sx={styles.text10}>Miễn phí vận chuyển khi thanh toán trước</Typography>
+              </div>
             </div>
           </div>
-        </div>}
+        )}
         <div style={{ width: '50%' }}>
           <img src={img_order} alt="img order" style={styles.img}></img>
         </div>
@@ -418,8 +423,8 @@ function InfoOrdersContainer() {
           value={valueForm.address.store}
           sx={{
             '.MuiFormControlLabel-root': {
-              m: '0'
-            }
+              m: '0',
+            },
           }}
         >
           <div>

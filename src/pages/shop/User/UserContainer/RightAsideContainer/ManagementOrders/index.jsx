@@ -1,10 +1,10 @@
-import { useCallback, useEffect,  useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Box, Button, Paper, Tab, Tabs, Typography } from '@mui/material';
 import { styles } from './styles';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { Link,  useNavigate, useOutletContext } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import OrderItem from '~/components/elements/OrderItem';
-import { fetchAllOrders } from '~/apis';
+import { fetchAllOrders } from '~/apis/client';
 import { handleOrdersData } from '~/utils';
 
 function ManagementOrders() {
@@ -21,13 +21,18 @@ function ManagementOrders() {
       setUserOrders(handleOrdersData(rs));
     }
     return;
-  }
-  
+  };
+
   useEffect(() => {
-    if (outLetContext?.isFetch === "/user/management-orders") {
-      getUserOrders().then(()=>setLoading(false)).catch(err => setLoading(false));
+    if (outLetContext?.isFetch === '/user/management-orders') {
+      getUserOrders()
+        .then(() => setLoading(false))
+        .catch(err => {
+          setLoading(false);
+          console.log({ err });
+        });
     }
-  }, [outLetContext])
+  }, [outLetContext]);
 
   const handleChangeIdxPanel = useCallback((event, newValue) => {
     setCurrentIdx(newValue);
@@ -39,10 +44,10 @@ function ManagementOrders() {
       type1: userOrders?.type1?.length > 0 ? true : false,
       type2: userOrders?.type2?.length > 0 ? true : false,
       type3: userOrders?.type3?.length > 0 ? true : false,
-      type4: userOrders?.type4?.length > 0 ? true : false
+      type4: userOrders?.type4?.length > 0 ? true : false,
     };
   };
-  
+
   const TextElmPanel = ({ text }) => {
     console.log('userOrders', userOrders);
     let numOrder;
@@ -71,7 +76,7 @@ function ManagementOrders() {
         <Typography sx={{ color: '#b4b7c6 !important', pl: '6px' }}>{numOrder}</Typography>
       </div>
     );
-  }
+  };
 
   const HaveNotOrders = () => {
     return (
@@ -107,7 +112,7 @@ function ManagementOrders() {
   const HaveOrders = ({ idx }) => {
     return (
       <div style={styles.part2}>
-        {userOrders[`type${idx}`].map((_order, index) => (
+        {userOrders[`type${idx}`].map(_order => (
           <OrderItem key={_order._id} data={_order} />
         ))}
       </div>

@@ -6,7 +6,7 @@ const processAPI = async (method, url, body, header, option) => {
   let reqMethod = method || 'GET';
 
   let reqUrl = url;
-  if (!reqUrl.match(/^(http[s]{0,1}[:][\/]{2})/i)) {
+  if (!reqUrl.match(/^(http[s]{0,1}[:][\\/]{2})/i)) {
     const rurl = Config.SERVER_LOCAL || Config.SERVER_LOCAL;
     reqUrl = `${rurl}/${reqUrl.startsWith('/') ? reqUrl.substr(1) : reqUrl}`;
   }

@@ -2,11 +2,11 @@ import { Alert, Button, Grid, OutlinedInput, Paper, Typography } from '@mui/mate
 import React, { useCallback } from 'react';
 import { MdOutlineInfo, MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
 import { RiCoupon2Line, RiMoneyDollarCircleLine } from 'react-icons/ri';
-import { HiMinus } from 'react-icons/hi';
+import { HiMinus, HiOutlineClipboardList } from 'react-icons/hi';
 import { CgCloseO } from 'react-icons/cg';
 import { useCart } from 'react-use-cart';
 import { BiCheck } from 'react-icons/bi';
-import { HiOutlineClipboardList } from 'react-icons/hi';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { style } from '@mui/system';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ import { styles } from './styles';
 import 'react-toastify/dist/ReactToastify.css';
 
 export function CartItem({ item, index, itemLength, showControl, showDetail, callback }) {
-  const { items, updateItemQuantity, removeItem, cartTotal } = useCart();
+  const { updateItemQuantity, removeItem } = useCart();
   const ToastContent = () => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div style={{ display: 'flex' }}>
@@ -30,13 +30,13 @@ export function CartItem({ item, index, itemLength, showControl, showDetail, cal
     (id, currentQuantity) => {
       updateItemQuantity(id, currentQuantity - 1);
     },
-    [updateItemQuantity]
+    [updateItemQuantity],
   );
   const handleAddItem = useCallback(
     (id, currentQuantity) => {
       updateItemQuantity(id, currentQuantity + 1);
     },
-    [updateItemQuantity]
+    [updateItemQuantity],
   );
   const removeItemInCart = id => {
     toast.dismiss();
@@ -49,7 +49,7 @@ export function CartItem({ item, index, itemLength, showControl, showDetail, cal
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      style: { width: 'auto', backgroundColor: 'rgba(2,1,36,.85)' }
+      style: { width: 'auto', backgroundColor: 'rgba(2,1,36,.85)' },
     });
     removeItem(id);
   };
@@ -151,12 +151,12 @@ function Cart() {
     </div>
   );
   const navigate = useNavigate();
- 
+
   return (
     <Grid columnSpacing={4} container>
       <Grid item md={8}>
         {items.map((item, index) => (
-          <CartItem item={item} index={index} itemLength={items.length} showControl showDetail />
+          <CartItem key={index} item={item} index={index} itemLength={items.length} showControl showDetail />
         ))}
       </Grid>
       <Grid item md={4}>

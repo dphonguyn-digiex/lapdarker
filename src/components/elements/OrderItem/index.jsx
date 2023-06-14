@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { Box, Button, FormControlLabel, Grid, Modal, Paper, Radio, RadioGroup, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { BiHome } from 'react-icons/bi';
@@ -39,8 +40,8 @@ function OrderItem({ data }) {
       dispatch(
         ordersActions.updateOrdersRequest({
           type: 'UPDATE_STATE_ORDER',
-          data: { state: `WAIT_FOR_CONFIRM/${valueRadio}`, id: data._id }
-        })
+          data: { state: `WAIT_FOR_CONFIRM/${valueRadio}`, id: data._id },
+        }),
       );
       // window.location.reload();
     }
@@ -127,14 +128,14 @@ function OrderItem({ data }) {
                   <div
                     style={{
                       borderRadius: '4px',
-                      backgroundColor: 'rgba(236, 240, 241,1)'
+                      backgroundColor: 'rgba(236, 240, 241,1)',
                     }}
                   >
                     <div
                       style={{
                         padding: '4px',
                         display: 'flex',
-                        alignItems: 'center'
+                        alignItems: 'center',
                       }}
                     >
                       <Typography component="span" sx={{ fontSize: '13px', fontWeight: 'bold', pr: '4px' }}>
@@ -213,7 +214,7 @@ function OrderItem({ data }) {
                         <div
                           style={{
                             backgroundColor: 'rgba(248, 250, 252, 1)',
-                            borderRadius: '8px'
+                            borderRadius: '8px',
                           }}
                         >
                           <Typography sx={styles.text14}>Đang xử lý</Typography>
@@ -283,14 +284,14 @@ function OrderItem({ data }) {
                               <div
                                 style={{
                                   borderRadius: '4px',
-                                  backgroundColor: 'rgba(236, 240, 241,1)'
+                                  backgroundColor: 'rgba(236, 240, 241,1)',
                                 }}
                               >
                                 <div
                                   style={{
                                     padding: '4px',
                                     display: 'flex',
-                                    alignItems: 'center'
+                                    alignItems: 'center',
                                   }}
                                 >
                                   <Typography component="span" sx={{ fontSize: '13px' }}>
@@ -301,7 +302,7 @@ function OrderItem({ data }) {
                                     sx={{
                                       fontSize: '13px',
                                       fontWeight: 'bold',
-                                      pl: '4px'
+                                      pl: '4px',
                                     }}
                                   >
                                     {product.quantity}
@@ -335,10 +336,10 @@ function OrderItem({ data }) {
                               </Typography>
                               <div style={styles.box_info1}>
                                 <Typography sx={styles.text18}>
-                                  <strong>Nội dung chuyển khoản</strong> 'Tên khách hàng, số điện thoại'
+                                  <strong>Nội dung chuyển khoản</strong> {"'Tên khách hàng, số điện thoại'"}
                                 </Typography>
                                 <Typography sx={styles.text18}>
-                                  <strong>Ví dụ</strong> 'Nguyen Van A, 0912345678'
+                                  <strong>Ví dụ</strong> {"'Nguyen Van A, 0912345678'"}
                                 </Typography>
                               </div>
                               <div style={styles.box_info2}>

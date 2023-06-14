@@ -1,4 +1,6 @@
 package-lock.json 
+yarn.lock
 package.json
 /*.json
 client/.babelrc
+dist/

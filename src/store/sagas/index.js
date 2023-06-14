@@ -1,6 +1,6 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 import * as actions from "../actions";
-import * as apis from "../../apis";
+import * as apis from "../../apis/client";
 
 function* fetchDevicesSaga(action) {
   try {

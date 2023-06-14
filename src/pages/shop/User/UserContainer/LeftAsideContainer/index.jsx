@@ -1,10 +1,8 @@
 import { Avatar, Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { styles } from './styles';
 
-import { userState } from '~/store/selectors';
 import { dataButton } from '~/components/common/Header/BoxUser/dataButton';
 import ButtonItemMenuBox from '~/components/elements/ButtonItemBoxUser';
 import BoxLogin from '~/components/common/Header/BoxLogin';
@@ -26,14 +24,10 @@ function LeftAsideContainer() {
 
   const isAuthenticatedUser = (
     <div style={styles.part_avt}>
-      <Avatar sx={styles.avt}>
-        {userInfo?.fullname ? userInfo?.fullname.split()[0].upperCase() : 'A'}
-      </Avatar>
+      <Avatar sx={styles.avt}>{userInfo?.fullname ? userInfo?.fullname.split()[0].upperCase() : 'A'}</Avatar>
       <div style={styles.part_avt_content}>
-        {userInfo?.fullname && <Typography sx={styles.text03}>
-          {userInfo?.fullname}
-        </Typography>}
-        <Typography sx={styles.text04} style={{...!userInfo?.fullname && {fontSize: '20px', fontWeight: 'bold'}}}>
+        {userInfo?.fullname && <Typography sx={styles.text03}>{userInfo?.fullname}</Typography>}
+        <Typography sx={styles.text04} style={{ ...(!userInfo?.fullname && { fontSize: '20px', fontWeight: 'bold' }) }}>
           {userInfo?.phone ? userInfo?.phone : '09**-***-***'}
         </Typography>
       </div>
@@ -54,7 +48,7 @@ function LeftAsideContainer() {
         <div
           onClick={handleOpenBoxLogin}
           style={{
-            display: 'flex'
+            display: 'flex',
           }}
         >
           <Typography sx={styles.text02}>Chưa có tài khoản?</Typography>
@@ -69,9 +63,7 @@ function LeftAsideContainer() {
   return (
     <div>
       <div style={styles.wrap_main_paper}>
-        {isLogin ? isAuthenticatedUser : <div style={styles.part1_paper}>
-          {isUnauthenticatedUser}
-        </div>}
+        {isLogin ? isAuthenticatedUser : <div style={styles.part1_paper}>{isUnauthenticatedUser}</div>}
         <div>
           {dataButton.map((data, index) => {
             return (

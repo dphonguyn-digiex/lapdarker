@@ -1,5 +1,4 @@
-import { Button, Typography } from '@mui/material';
-import { IoMdAdd } from 'react-icons/io';
+import { Typography } from '@mui/material';
 import { createContext } from 'react';
 
 import * as React from 'react';
@@ -7,8 +6,6 @@ import * as React from 'react';
 import SkeletonTable from '~/components/elements/Skeleton/SkeletonTable';
 import DataGridTable from '~/components/elements/DataGridTable';
 import { fetchAllOrdersOfCusomers } from '~/apis/admin';
-
-import { useGetAllOrders } from '~/hook'; 
 
 function MainOrders() {
   const [ordersFetch, setOrdersFetch] = React.useState([]);
@@ -32,15 +29,15 @@ function MainOrders() {
   }, []);
 
   return (
-    <DataContext.Provider value={{ refecthOrder: null }}> 
-      <div className=''>
+    <DataContext.Provider value={{ refecthOrder: null }}>
+      <div className="">
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography sx={{ fontSize: '28px', fontWeight: 'bold' }}>Đơn hàng</Typography>
         </div>
         <div style={{ height: '520px', width: '95%', padding: '24px 0', margin: '0' }}>
-          {!loading ? <DataGridTable data={ordersFetch}/> : <SkeletonTable />   }
+          {!loading ? <DataGridTable data={ordersFetch} /> : <SkeletonTable />}
         </div>
-    </div>
+      </div>
     </DataContext.Provider>
   );
 }

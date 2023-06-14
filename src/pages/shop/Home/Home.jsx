@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
-import { PuffLoader } from 'react-spinners';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-
-// import { devicesFiltersState } from '~/store/selectors';
-// import { getDevices } from '~/store/actions';
 import MainPage from './MainPage';
-import { fetchLaptops } from '~/apis';
+import { fetchLaptops } from '~/apis/client';
 import IntroHomePage from '~/components/Intro/IntroHomePage';
 import SpinnerLoader from '~/components/common/SpinnerLoader/Spinner';
 

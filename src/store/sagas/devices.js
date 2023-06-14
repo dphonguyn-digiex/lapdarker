@@ -1,6 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import * as actions from '../actions';
-import * as apis from '../../apis';
+import * as apis from '../../apis/client';
 function* fetchDevicesSaga(action) {
   try {
     const devices = yield call(apis.fetchDevices, action.payload);
